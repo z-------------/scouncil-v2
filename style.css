@@ -152,6 +152,8 @@ header nav > a {
     padding: 5px 0;
     position: relative;
     margin-bottom: 5px;
+    padding: 5px;
+    padding-bottom: 7px;
     
     transition-property: background;
 }
@@ -199,6 +201,10 @@ section img {
     margin: 10px 0;
 }
 
+section img, #stream li {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+}
+
 #member-list {
     list-style: none;
     display: block;
@@ -216,14 +222,16 @@ section img {
     border-radius: 50%;
     overflow: hidden;
     cursor: default;
+    
+    transition-property: box-shadow;
 }
 
 #member-list li.general {
-    box-shadow: 0 0 0 5px #e4bb18;
+    box-shadow: 0 0 0 5px #e4bb18, 0 5px 10px 5px rgba(0, 0, 0, .3);
 }
 
 #member-list li.apprentice {
-    box-shadow: 0 0 0 5px #ccc;
+    box-shadow: 0 0 0 5px #ccc, 0 5px 10px 5px rgba(0, 0, 0, .3);
 }
 
 #member-list li .detail {
