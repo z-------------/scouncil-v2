@@ -1,4 +1,4 @@
-var xhr = function(url,callback) {
+var xhr = function(url, callback) {
     var oReq = new XMLHttpRequest();
     oReq.onload = function(){
         var response = this.responseText;
@@ -111,13 +111,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function changeColors() {
         var classes = ["blue", "yellow", "red"];
-        var index = (function $A(iterable) { // from prototype.js
-            if (!iterable) return [];
-            if ("toArray" in Object(iterable)) return iterable.toArray();
-            var length = iterable.length || 0, results = new Array(length);
-            while (length--) results[length] = iterable[length];
-            return results;
-        })(document.querySelector("header nav").children).indexOf(document.querySelector("[href='" + location.hash + "']")) % classes.length;
+        var index = [].slice.call(document.querySelector("header nav").children).indexOf(document.querySelector("[href='" + location.hash + "']")) % classes.length;
         
         document.body.removeAttribute("class")
         if (classes[index]) {
