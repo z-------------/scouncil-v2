@@ -209,10 +209,6 @@ document.addEventListener("DOMContentLoaded", function(){
             })(entries[i].content);
             
             entryElem.innerHTML = "<p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'><div class='entryinfo'>" + date + "</div></a>";
-            
-            entryElem.addEventListener("click", function(){
-                this.classList.toggle("expanded");
-            });
 
             streamElem.appendChild(entryElem);
         }
