@@ -165,6 +165,7 @@ header nav > a:hover {
 
 header nav > a.current {
     background-color: rgba(0, 0, 0, .3);
+    box-shadow: inset -3px 0 rgba(255, 255, 255, .7);
 }
 
 h1 {
