@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(){
             apprenticeString = "Apprentice ";
         }
         
-        listItem.innerHTML = "<div class='snippet'></div><div class='detail'><h3></h3><h4></h4><p></p></div>";
+        listItem.innerHTML = "<div class='snippet'></div><div class='detail-arrow'></div><div class='detail'><h3></h3><h4></h4><p></p></div>";
         
         var snippetElem = listItem.querySelector(".snippet");
         
@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
                 
                 var detailElem = liElem.querySelector(".detail");
+                var arrowElem = liElem.querySelector(".detail-arrow");
                 
                 var delay = 0;
                 if (expandedElems.length !== 0) delay = 300;
@@ -105,7 +106,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 
                 setTimeout(function(){
                     detailElem.style.top = that.offsetTop + that.offsetHeight + "px";
-                    liElem.style.height = liElem.offsetHeight + detailElem.offsetHeight + "px";
+                    
+                    arrowElem.style.top = that.offsetTop + that.offsetHeight + "px";
+                    
+                    liElem.style.height = liElem.offsetHeight + detailElem.offsetHeight + 20 + "px";
                     liElem.classList.add("expanded");
                 }, delay);
             }

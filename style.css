@@ -206,7 +206,7 @@ section img {
     margin: 10px 0;
 }
 
-section img, #stream li, #member-list .detail {
+section img, #stream li/*, #member-list .detail*/ {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
 }
 
@@ -223,6 +223,8 @@ section img, #stream li, #member-list .detail {
     margin: 12px;
     
     transition-property: max-height;
+    
+    /* some dynamic style added by script.js */
 }
 
 #member-list li.general .snippet {
@@ -268,6 +270,7 @@ section img, #stream li, #member-list .detail {
     padding: 20px 31px;
     width: 100vw;
     width: calc(100vw - 350px);
+    height: 230px;
     opacity: 0;
     pointer-events: none;
     background-color: rgba(0, 0, 0, .3);
@@ -275,8 +278,11 @@ section img, #stream li, #member-list .detail {
     position: absolute;
     left: 0;
     top: 0;
+    overflow-y: auto;
     
     transition-property: opacity;
+    
+    /* some dynamic style added by script.js */
 }
 
 #member-list li .detail h3 {
@@ -288,19 +294,22 @@ section img, #stream li, #member-list .detail {
     color: rgba(255, 255, 255, .8);
 }
 
-#member-list li .detail:before {
-    content: "";
-    
+#member-list li .detail-arrow {
     position: absolute;
-    left: 0;
-    top: -15px;
-    margin-left: 15px;
+    
+    margin-top: 16px;
+    margin-left: 75px;
     
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 0 15px 15px 15px;
     border-color: transparent transparent rgba(0, 0, 0, .3) transparent;
+    opacity: 0;
+    
+    transition-property: opacity;
+    
+    /* some dynamic style added by script.js */
 }
 
 #member-list li.expanded .detail {
@@ -308,8 +317,16 @@ section img, #stream li, #member-list .detail {
     pointer-events: auto;
 }
 
+#member-list li.expanded .detail-arrow {
+    opacity: 1;
+}
+
 #member-list li.expanded {
-    max-height: 1000px;
+    max-height: 430px;
+}
+
+#member-list li .detail p {
+    margin: 20px 0;
 }
 
 header nav span {
