@@ -149,15 +149,15 @@ header nav {
 
 header nav > a {
     display: block;
-    padding: 5px 0;
     position: relative;
     margin-bottom: 5px;
+    
     padding: 5px;
-    padding-left: 50px;
+    padding-left: 70px;
     padding-bottom: 7px;
     
     background-size: 20px;
-    background-position: 20px;
+    background-position: 40px;
     background-repeat: no-repeat;
     
     transition-property: background;
@@ -206,7 +206,7 @@ section img {
     margin: 10px 0;
 }
 
-section img, #stream li {
+section img, #stream li, #member-list .detail {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
 }
 
@@ -217,49 +217,99 @@ section img, #stream li {
 
 #member-list li {
     display: inline-block;
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    max-height: 180px;
     vertical-align: top;
-    margin: 17px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: default;
+    margin: 12px;
     
-    transition-property: box-shadow;
+    transition-property: max-height;
 }
 
-#member-list li.general {
+#member-list li.general .snippet {
+    box-shadow: 0 0 0 5px #e4bb18, 0 3px 7px 3px rgba(0, 0, 0, .3);
+}
+
+#member-list li.apprentice .snippet {
+    box-shadow: 0 0 0 5px #ccc, 0 3px 7px 3px rgba(0, 0, 0, .3);
+}
+
+#member-list li.general .snippet:hover {
     box-shadow: 0 0 0 5px #e4bb18, 0 5px 10px 5px rgba(0, 0, 0, .3);
 }
 
-#member-list li.apprentice {
+#member-list li.apprentice .snippet:hover {
     box-shadow: 0 0 0 5px #ccc, 0 5px 10px 5px rgba(0, 0, 0, .3);
 }
 
-#member-list li .detail {
-    opacity: 0;
-    background-color: rgba(0, 0, 0, .5);
-    width: 100%;
-    height: 100%;
+#member-list li .snippet {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     font-size: .8em;
     font-weight: 100;
     text-align: center;
-    padding: 10px;
-    padding-top: 53px;
+    cursor: pointer;
+    margin: 15px;
+    
+    background-size: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    transition-property: box-shadow;
+}
+
+#member-list li .snippet h4 {
+    font-weight: 600;
+}
+
+#member-list li .detail {
+    margin: 20px 50px;
+    margin-top: 31px;
+    padding: 20px 31px;
+    width: 100vw;
+    width: calc(100vw - 350px);
+    opacity: 0;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    top: 0;
     
     transition-property: opacity;
 }
 
-#member-list li:hover .detail {
-    opacity: 1;
+#member-list li .detail h3 {
+    margin: 5px 0;
 }
 
 #member-list li .detail h4 {
-    font-weight: 600;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .8);
+}
+
+#member-list li .detail:before {
+    content: "";
+    
+    position: absolute;
+    left: 0;
+    top: -15px;
+    margin-left: 15px;
+    
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 15px 15px 15px;
+    border-color: transparent transparent rgba(0, 0, 0, .3) transparent;
+}
+
+#member-list li.expanded .detail {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#member-list li.expanded {
+    max-height: 1000px;
 }
 
 header nav span {
@@ -519,7 +569,7 @@ button:hover {
         height: 120px;
     }
     
-    #member-list li .detail {
+    #member-list li .snippet {
         padding-top: 40px;
     }
     

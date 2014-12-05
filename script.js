@@ -81,8 +81,34 @@ document.addEventListener("DOMContentLoaded", function(){
             apprenticeString = "Apprentice ";
         }
         
-        listItem.innerHTML = "<div class='detail'><h4>" + members[i].name + "</h4><span>" + apprenticeString + members[i].role + "</span></div>";
-        listItem.style.backgroundImage = "url(" + members[i].photo + ")";
+        listItem.innerHTML = "<div class='snippet'></div><div class='detail'><h3></h3><h4></h4><p></p></div>";
+        
+        var snippetElem = listItem.querySelector(".snippet");
+        
+        snippetElem.style.backgroundImage = "url(" + members[i].photo + ")";
+        snippetElem.addEventListener("click", function(){
+            var liElem = this.parentElement;
+            if (liElem.classList.contains("expanded")) {
+                liElem.classList.remove("expanded");
+            } else {
+                var expandedElems = document.querySelectorAll("#member-list li.expanded");
+                for (var expandedElem of [].slice.call(expandedElems)) {
+                    expandedElem.classList.remove("expanded");
+                }
+                
+                var detailElem = liElem.querySelector(".detail");
+                detailElem.style.top = this.offsetTop + this.offsetHeight + "px";
+                
+                liElem.style.height = liElem.offsetHeight + detailElem.offsetHeight + "px";
+                
+                liElem.classList.add("expanded");
+            }
+        });
+        
+        listItem.querySelector(".detail h3").textContent = members[i].name;
+        listItem.querySelector(".detail h4").textContent = apprenticeString + members[i].role;
+        listItem.querySelector(".detail p").textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.";
+        
         listItem.classList.add(members[i].cabinet);
 
         memberUL.appendChild(listItem);
