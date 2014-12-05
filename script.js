@@ -237,15 +237,11 @@ document.addEventListener("DOMContentLoaded", function(){
             var entryElem = document.createElement("li");
             
             var date = new Date(entries[i].updated).toDateString();
+            var content = entries[i].content.replace(/<img[^>]+\>/ig, "");
+            entryElem.innerHTML = "<div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
             
-            var content = (function(str){
-                var div = document.createElement("div");
-                div.innerHTML = str;
-                return div.textContent;
-            })(entries[i].content);
             
-            entryElem.innerHTML = "<p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'><div class='entryinfo'>" + date + "</div></a>";
-
+            
             streamElem.appendChild(entryElem);
         }
         

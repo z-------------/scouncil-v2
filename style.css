@@ -206,7 +206,7 @@ section img {
     margin: 10px 0;
 }
 
-section img, /*#stream li, #member-list .detail*/ {
+section img, #stream li.expanded {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
 }
 
@@ -423,12 +423,11 @@ button:hover {
 
 #stream li {
     width: calc(50% - 20px);
-    padding: 31px;
     padding-bottom: 81px;
     margin: 20px 0;
     display: block;
     position: relative;
-    background-color: rgba(0, 0, 0, .3);
+    background-color: #6F0B1F;
     word-wrap: break-word;
     overflow: hidden;
 }
@@ -456,6 +455,10 @@ button:hover {
     background-repeat: no-repeat;
     background-size: 30px;
     background-position: calc(100% - 31px);*/
+}
+
+#stream li .entry-container {
+    padding: 31px;
 }
 
 #stream li p a {
