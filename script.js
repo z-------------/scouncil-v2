@@ -97,11 +97,17 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
                 
                 var detailElem = liElem.querySelector(".detail");
-                detailElem.style.top = this.offsetTop + this.offsetHeight + "px";
                 
-                liElem.style.height = liElem.offsetHeight + detailElem.offsetHeight + "px";
+                var delay = 0;
+                if (expandedElems.length !== 0) delay = 300;
                 
-                liElem.classList.add("expanded");
+                var that = this;
+                
+                setTimeout(function(){
+                    detailElem.style.top = that.offsetTop + that.offsetHeight + "px";
+                    liElem.style.height = liElem.offsetHeight + detailElem.offsetHeight + "px";
+                    liElem.classList.add("expanded");
+                }, delay);
             }
         });
         
