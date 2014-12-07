@@ -8,6 +8,8 @@ var xhr = function(url, callback) {
     oReq.send();
 };
 
+var LinkshimAsyncLink;
+
 document.addEventListener("DOMContentLoaded", function(){
     var memberUL = document.querySelector("#member-list");
 
@@ -249,6 +251,6 @@ document.addEventListener("DOMContentLoaded", function(){
             itemSelector: "li",
             gutter: 40,
             transitionDuration: "0"
-        })
+        });
     });
 });
