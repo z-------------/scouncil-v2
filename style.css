@@ -430,6 +430,9 @@ button:hover {
     background-color: #6F0B1F;
     word-wrap: break-word;
     overflow: hidden;
+    cursor: pointer;
+    
+    transition-property: width, box-shadow, opacity, left;
 }
 
 #stream li p {
@@ -450,11 +453,6 @@ button:hover {
     background-color: #e41841;
     font-weight: 300;
     font-size: .8em;
-    
-    /*background-image: url(img/ui/link.svg);
-    background-repeat: no-repeat;
-    background-size: 30px;
-    background-position: calc(100% - 31px);*/
 }
 
 #stream li .entry-container {
@@ -467,6 +465,17 @@ button:hover {
 
 #stream li p a:hover {
     border-bottom: solid 1px #18a7e4;
+}
+
+#stream li.expanded {
+    width: 100%;
+    z-index: 1;
+    left: 0 !important;
+}
+
+#stream.dimmed li:not(.expanded) {
+    opacity: .3;
+    pointer-events: none;
 }
 
 [data-icon="info"] {

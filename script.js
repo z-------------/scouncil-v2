@@ -8,7 +8,9 @@ var xhr = function(url, callback) {
     oReq.send();
 };
 
-var LinkshimAsyncLink;
+var LinkshimAsyncLink = {
+    swap: function(){}
+};
 
 document.addEventListener("DOMContentLoaded", function(){
     var memberUL = document.querySelector("#member-list");
@@ -17,62 +19,74 @@ document.addEventListener("DOMContentLoaded", function(){
         name: "Dennis Lui",
         role: "Chairperson",
         cabinet: "general",
-        photo: "img/members/dennis.jpg"
+        photo: "img/members/dennis.jpg",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Cedric Li",
         role: "Vice Chairperson",
         cabinet: "general",
-        photo: "img/members/cedric.jpg"
+        photo: "img/members/cedric.jpg",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Christy Tsang",
         role: "Vice Chairperson",
         cabinet: "general",
-        photo: "img/members/christy.jpg"
+        photo: "img/members/christy.jpg",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Helen Wong",
         role: "Secretary",
         cabinet: "general",
-        photo: "img/members/helen.jpg"
+        photo: "img/members/helen.jpg",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Laurel Lee",
         role: "Treasurer",
         cabinet: "general",
-        photo: "img/members/laurel.jpg"
+        photo: "img/members/laurel.jpg",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Henry Lui",
         role: "Chief of Communications",
         cabinet: "general",
-        photo: "img/members/henry.jpg"
+        photo: "img/members/henry.jpg",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Lorem Ipsum",
         role: "Chairperson",
         cabinet: "apprentice",
-        photo: "//placehold.it/150x150"
+        photo: "//placehold.it/150x150",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Lorem Ipsum",
         role: "Vice Chairperson",
         cabinet: "apprentice",
-        photo: "//placehold.it/150x150"
+        photo: "//placehold.it/150x150",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Lorem Ipsum",
         role: "Vice Chairperson",
         cabinet: "apprentice",
-        photo: "//placehold.it/150x150"
+        photo: "//placehold.it/150x150",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Lorem Ipsum",
         role: "Secretary",
         cabinet: "apprentice",
-        photo: "//placehold.it/150x150"
+        photo: "//placehold.it/150x150",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Lorem Ipsum",
         role: "Treasurer",
         cabinet: "apprentice",
-        photo: "//placehold.it/150x150"
+        photo: "//placehold.it/150x150",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
         name: "Lorem Ipsum",
         role: "Chief of Communications",
         cabinet: "apprentice",
-        photo: "//placehold.it/150x150"
+        photo: "//placehold.it/150x150",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }];
 
     for (i=0; i<members.length; i++) {
@@ -119,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function(){
         
         listItem.querySelector(".detail h3").textContent = members[i].name;
         listItem.querySelector(".detail h4").textContent = apprenticeString + members[i].role;
-        listItem.querySelector(".detail p").textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.";
+        listItem.querySelector(".detail p").textContent = members[i].bio;
         
         listItem.classList.add(members[i].cabinet);
 
@@ -239,10 +253,13 @@ document.addEventListener("DOMContentLoaded", function(){
             var entryElem = document.createElement("li");
             
             var date = new Date(entries[i].updated).toDateString();
-            var content = entries[i].content.replace(/<img[^>]+\>/ig, "");
+            var content = entries[i].content.replace(/<img[^>]+\>/ig, ""); // remove <img> tags
             entryElem.innerHTML = "<div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
             
-            
+            entryElem.addEventListener("click", function(){
+                streamElem.classList.toggle("dimmed");
+                this.classList.toggle("expanded");
+            });
             
             streamElem.appendChild(entryElem);
         }
