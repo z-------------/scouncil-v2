@@ -262,6 +262,9 @@ document.addEventListener("DOMContentLoaded", function(){
             });
             
             streamElem.appendChild(entryElem);
+            
+            var entryContainer = entryElem.querySelector(".entry-container");
+            if (entryContainer.offsetHeight > entryElem.offsetHeight - 50) entryElem.classList.add("overflow");
         }
         
         fbMsnry = new Masonry(streamElem, {
