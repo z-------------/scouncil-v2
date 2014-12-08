@@ -437,12 +437,12 @@ button:hover {
 }
 
 #stream li {
-    width: calc(50% - 20px);
+    width: calc(50% - 10px);
     padding-bottom: 81px;
-    margin: 20px 0;
+    margin: 10px 0;
     display: block;
     position: relative;
-    background-color: #6F0B1F;
+    background-color: rgba(0, 0, 0, .3);
     word-wrap: break-word;
     overflow: hidden;
     cursor: pointer;
@@ -473,6 +473,7 @@ button:hover {
 
 #stream li .entry-container {
     padding: 31px;
+    transition-property: padding;
 }
 
 #stream li.overflow .entry-container:after {
@@ -506,6 +507,10 @@ button:hover {
     z-index: 1;
     left: 0 !important;
     max-height: none;
+}
+
+#stream li.expanded .entry-container {
+    padding: 50px;
 }
 
 #stream li.expanded .entry-container:after {

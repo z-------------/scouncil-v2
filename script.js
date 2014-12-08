@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function(){
         
         fbMsnry = new Masonry(streamElem, {
             itemSelector: "li",
-            gutter: 40,
+            gutter: 20,
             transitionDuration: "0"
         });
     });
