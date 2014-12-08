@@ -238,7 +238,6 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
     
-
     /* facebook feed stuff */
     var fbURL = "py/fb.py";
     var streamElem = document.getElementById("stream");
