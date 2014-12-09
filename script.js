@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function(){
                 liElem.classList.remove("expanded");
             } else {
                 var expandedElems = document.querySelectorAll("#member-list li.expanded");
-                for (var expandedElem of [].slice.call(expandedElems)) {
-                    expandedElem.classList.remove("expanded");
+                for (var i = 0; i < expandedElems.length; i++) {
+                    expandedElems[i].classList.remove("expanded");
                 }
                 
                 var detailElem = liElem.querySelector(".detail");
