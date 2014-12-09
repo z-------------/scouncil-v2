@@ -12,10 +12,14 @@ shh it's top secret
 
 ## Configure
 
-Add these lines to your `php5.conf` (to allow execution of inline PHP in HTML):
+Add these lines to your `php5.conf` (to allow execution of inline PHP in HTML and `script.js`):
 
 ```
 <FilesMatch "\.html$">
     ForceType application/x-httpd-php
 </FilesMatch>
+
+<Files script.js>
+    ForceType application/x-httpd-php
+</Files>
 ```
