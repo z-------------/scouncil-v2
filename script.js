@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function(){
             
             var date = new Date(entries[i].updated).toDateString();
             var content = entries[i].content.replace(/<img[^>]+\>/ig, ""); // remove <img> tags
-            entryElem.innerHTML = "<div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
+            entryElem.innerHTML = "<div class='entry-deco'></div><div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
             
             entryElem.addEventListener("click", function(){
                 streamElem.classList.toggle("dimmed");
