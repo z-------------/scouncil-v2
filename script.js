@@ -13,7 +13,7 @@ var LinkshimAsyncLink = {
 };
 
 document.addEventListener("DOMContentLoaded", function(){
-    var memberUL = document.querySelector("#member-list");
+    var memberULs = document.querySelectorAll(".module.member-list");
 
     var members = <?php include("admin/content/members.json"); ?>.members;
 
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function(){
             if (liElem.classList.contains("expanded")) {
                 liElem.classList.remove("expanded");
             } else {
-                var expandedElems = document.querySelectorAll("#member-list li.expanded");
+                var expandedElems = document.querySelectorAll(".module.member-list li.expanded");
                 for (var i = 0; i < expandedElems.length; i++) {
                     expandedElems[i].classList.remove("expanded");
                 }
@@ -64,8 +64,10 @@ document.addEventListener("DOMContentLoaded", function(){
         listItem.querySelector(".detail p").textContent = members[i].bio;
         
         listItem.classList.add(members[i].cabinet);
-
-        memberUL.appendChild(listItem);
+        
+        [].slice.call(memberULs).forEach(function(memberUL){
+            memberUL.appendChild(listItem);
+        });
     }
 
     function switchSection(hash) {
@@ -168,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function(){
     
     /* facebook feed stuff */
     var fbURL = "py/fb.py";
-    var streamElem = document.getElementById("stream");
+    var streamElems = document.querySelectorAll(".module.news-stream");
     
     var fbMsnry;
 
@@ -180,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function(){
             var entryElem = document.createElement("li");
             
             var date = new Date(entries[i].updated).toDateString();
-            var content = entries[i].content.replace(/<img[^>]+\>/ig, ""); // remove <img> tags
+            var content = entries[i].content.replace(/<img[^>]+\>/ig, "");
             entryElem.innerHTML = "<div class='entry-deco'></div><div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
             
             entryElem.addEventListener("click", function(){
@@ -188,7 +190,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 this.classList.toggle("expanded");
             });
             
-            streamElem.appendChild(entryElem);
+            [].slice.call(streamElems).forEach(function(streamElem){
+                streamElem.appendChild(entryElem);
+            });
             
             var entryContainer = entryElem.querySelector(".entry-container");
             if (entryContainer.offsetHeight > entryElem.offsetHeight - 50) entryElem.classList.add("overflow");
@@ -198,6 +202,27 @@ document.addEventListener("DOMContentLoaded", function(){
             itemSelector: "li",
             gutter: 20,
             transitionDuration: "0"
+        });
+    });
+    
+    /* insert modules */
+    var moduleHTML = {
+        "social-links": "<a href='//www.facebook.com/stcstudentcouncil' class='fb' target='_blank'>Facebook</a>\
+<a href='//twitter.com/SC_Council' class='tw' target='_blank'>Twitter</a>\
+<a href='//sc.lg.esf.edu.hk/mod/questionnaire/view.php?id=57758' class='sug' target='_blank'>Suggestion box</a>",
+        "email-form": "<form method='get' action='mailto:studentcouncil@stconline.edu.hk'>\
+<input type='text' name='subject' placeholder='Subject'>\
+<textarea name='body' placeholder='Message' required></textarea>\
+<button title='Pressing this will launch your default email client'>Send</button>\
+</form>"
+    };
+    var moduleNames = Object.keys(moduleHTML);
+    
+    moduleNames.forEach(function(moduleName){
+        var html = moduleHTML[moduleName];
+        var targetElems = document.querySelectorAll(".module." + moduleName);
+        [].slice.call(targetElems).forEach(function(targetElem){
+            targetElem.innerHTML = html;
         });
     });
 });

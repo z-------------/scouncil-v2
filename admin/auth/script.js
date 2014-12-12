@@ -37,7 +37,11 @@ var saveButton = document.querySelector("#save");
     });
 });
 
+/* initialise wysihtml editor */
+wysihtml5ParserRules.tags.div = {remove: 0};
+
 var wysiEditor = new wysihtml5.Editor("editor", {
     toolbar: "toolbar",
-    parserRules:  wysihtml5ParserRules
+    parserRules:  wysihtml5ParserRules,
+    cleanUp: false
 });

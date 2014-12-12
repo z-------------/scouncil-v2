@@ -221,16 +221,16 @@ section img {
     margin: 10px 0;
 }
 
-section img, #stream li.expanded, #stream li:hover {
+section img, .module.news-stream li.expanded, .module.news-stream li:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
 }
 
-#member-list {
+.module.member-list {
     list-style: none;
     display: block;
 }
 
-#member-list li {
+.module.member-list li {
     display: inline-block;
     width: 180px;
     max-height: 180px;
@@ -242,23 +242,23 @@ section img, #stream li.expanded, #stream li:hover {
     /* some dynamic style added by script.js */
 }
 
-#member-list li.general .snippet {
+.module.member-list li.general .snippet {
     box-shadow: 0 0 0 5px #e4bb18, 0 3px 7px 3px rgba(0, 0, 0, .3);
 }
 
-#member-list li.apprentice .snippet {
+.module.member-list li.apprentice .snippet {
     box-shadow: 0 0 0 5px #ccc, 0 3px 7px 3px rgba(0, 0, 0, .3);
 }
 
-#member-list li.general .snippet:hover, #member-list li.general.expanded .snippet {
+.module.member-list li.general .snippet:hover, .module.member-list li.general.expanded .snippet {
     box-shadow: 0 0 0 5px #e4bb18, 0 5px 10px 5px rgba(0, 0, 0, .3);
 }
 
-#member-list li.apprentice .snippet:hover, #member-list li.apprentice.expanded .snippet {
+.module.member-list li.apprentice .snippet:hover, .module.member-list li.apprentice.expanded .snippet {
     box-shadow: 0 0 0 5px #ccc, 0 5px 10px 5px rgba(0, 0, 0, .3);
 }
 
-#member-list li .snippet {
+.module.member-list li .snippet {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -275,11 +275,11 @@ section img, #stream li.expanded, #stream li:hover {
     transition-property: box-shadow;
 }
 
-#member-list li .snippet h4 {
+.module.member-list li .snippet h4 {
     font-weight: 600;
 }
 
-#member-list li .detail {
+.module.member-list li .detail {
     margin: 20px 50px;
     margin-top: 31px;
     padding: 20px 31px;
@@ -300,16 +300,16 @@ section img, #stream li.expanded, #stream li:hover {
     /* some dynamic style added by script.js */
 }
 
-#member-list li .detail h3 {
+.module.member-list li .detail h3 {
     margin: 5px 0;
 }
 
-#member-list li .detail h4 {
+.module.member-list li .detail h4 {
     font-weight: 400;
     color: rgba(255, 255, 255, .8);
 }
 
-#member-list li .detail-arrow {
+.module.member-list li .detail-arrow {
     position: absolute;
     
     margin-top: 16px;
@@ -327,20 +327,20 @@ section img, #stream li.expanded, #stream li:hover {
     /* some dynamic style added by script.js */
 }
 
-#member-list li.expanded .detail {
+.module.member-list li.expanded .detail {
     opacity: 1;
     pointer-events: auto;
 }
 
-#member-list li.expanded .detail-arrow {
+.module.member-list li.expanded .detail-arrow {
     opacity: 1;
 }
 
-#member-list li.expanded {
+.module.member-list li.expanded {
     max-height: 430px;
 }
 
-#member-list li .detail p {
+.module.member-list li .detail p {
     margin: 20px 0;
 }
 
@@ -432,11 +432,11 @@ button:hover {
     background-color: #f2ca39;
 }
 
-#stream {
+.module.news-stream {
     width: 100%;
 }
 
-#stream li {
+.module.news-stream li {
     width: calc(50% - 10px);
     padding-bottom: 50px;
     margin: 10px 0;
@@ -450,15 +450,15 @@ button:hover {
     transition-property: width, box-shadow, opacity, left;
 }
 
-#stream li p {
+.module.news-stream li p {
     margin: 0;
 }
 
-#stream li img {
+.module.news-stream li img {
     margin: 10px;
 }
 
-#stream li .entryinfo {
+.module.news-stream li .entryinfo {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -470,7 +470,7 @@ button:hover {
     font-size: .8em;
 }
 
-#stream li .entry-container {
+.module.news-stream li .entry-container {
     padding: 31px;
     padding-top: calc(31px - 15px);
     background-color: rgba(0, 0, 0, .3);
@@ -478,13 +478,13 @@ button:hover {
     transition-property: padding;
 }
 
-#stream li .entry-deco {
+.module.news-stream li .entry-deco {
     width: calc(100% - 15px);
     height: 15px;
     background-color: rgba(0, 0, 0, .3);
 }
 
-#stream li .entry-deco:after {
+.module.news-stream li .entry-deco:after {
     content: "";
     
     width: 0;
@@ -498,7 +498,7 @@ button:hover {
     top: 0;
 }
 
-#stream li.overflow .entry-container:after {
+.module.news-stream li.overflow .entry-container:after {
     content: "Continue reading...";
     position: absolute;
     left: 0;
@@ -516,30 +516,30 @@ button:hover {
     transition-property: opacity;
 }
 
-#stream li p a {
+.module.news-stream li p a {
     color: #18a7e4;
 }
 
-#stream li p a:hover {
+.module.news-stream li p a:hover {
     border-bottom: solid 1px #18a7e4;
 }
 
-#stream li.expanded {
+.module.news-stream li.expanded {
     width: 100%;
     z-index: 1;
     left: 0 !important;
     max-height: none;
 }
 
-#stream li.expanded .entry-container {
+.module.news-stream li.expanded .entry-container {
     padding: 50px;
 }
 
-#stream li.expanded .entry-container:after {
+.module.news-stream li.expanded .entry-container:after {
     opacity: 0;
 }
 
-#stream.dimmed li:not(.expanded) {
+.module.news-stream.dimmed li:not(.expanded) {
     opacity: .3;
     pointer-events: none;
 }
@@ -655,16 +655,16 @@ button:hover {
         bottom: 0;
     }
     
-    #member-list {
+    .module.member-list {
         text-align: center;
     }
     
-    #member-list li {
+    .module.member-list li {
         width: 120px;
         height: 120px;
     }
     
-    #member-list li .snippet {
+    .module.member-list li .snippet {
         padding-top: 40px;
     }
     
@@ -686,11 +686,11 @@ button:hover {
 }
 
 @media only screen and (max-width: 1000px) { /* width 1000px */
-    #stream {
+    .module.news-stream {
         height: auto !important;
     }
     
-    #stream li {
+    .module.news-stream li {
         position: relative !important;
         top: auto !important;
         left: auto !important;
