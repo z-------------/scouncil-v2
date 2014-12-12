@@ -10,3 +10,31 @@
 .file-list li:hover {
     font-weight: 700;
 }
+
+#editor {
+    padding: 20px;
+    background: #ddd;
+}
+
+#editor > * {
+    max-width: 100%;
+}
+
+#editor .module {
+    display: block;
+    background-color: #bbb;
+    color: #555;
+    border: 1px solid #555;
+    width: 500px;
+    height: 50px;
+    max-width: 100%;
+    margin: 20px;
+    position: relative;
+    pointer-events: none;
+}
+
+#editor .module:before {
+    content: attr(class);
+    position: absolute;
+    margin: 5px;
+}
