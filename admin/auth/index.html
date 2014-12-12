@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>scouncil-v2 admin dashboard</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <ul class="file-list">
+            <?php
+                $dir    = "../content";
+                $files = scandir($dir);
+
+                function filter_filetype($file_name) {
+                    if (!strrpos($file_name, ".html") && !strrpos($file_name, ".json")) {
+                        return(FALSE);
+                    }
+                    return(TRUE);
+                }
+
+                $files = array_filter($files,"filter_filetype");
+
+                foreach ($files as &$file_name) {
+                    print("<li>" . $file_name . "</li>");
+                }
+            ?>
+        </ul>
+        
+        <div id="editor">
+            <textarea id="code-editor"></textarea>
+            <button id="save">Save</button>
+        </div>
+        
+        <script src="script.js"></script>
+    </body>
+</html>
