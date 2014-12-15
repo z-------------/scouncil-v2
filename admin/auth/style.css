@@ -1,13 +1,13 @@
-.file-list {
+#file-list {
     display: inline-block;
 }
 
-.file-list li {
+#file-list li {
     cursor: pointer;
     display: block;
 }
 
-.file-list li:hover {
+#file-list li:hover {
     font-weight: 700;
 }
 

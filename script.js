@@ -186,24 +186,26 @@ document.addEventListener("DOMContentLoaded", function(){
             entryElem.innerHTML = "<div class='entry-deco'></div><div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
             
             entryElem.addEventListener("click", function(){
-                streamElem.classList.toggle("dimmed");
+                streamElems[0].classList.toggle("dimmed");
                 this.classList.toggle("expanded");
             });
             
-            [].slice.call(streamElems).forEach(function(streamElem){
-                streamElem.appendChild(entryElem);
-            });
+            streamElems[0].appendChild(entryElem);
             
             var entryContainer = entryElem.querySelector(".entry-container");
             if (entryContainer.offsetHeight > entryElem.offsetHeight - 50) entryElem.classList.add("overflow");
         }
         
-        fbMsnry = new Masonry(streamElem, {
+        fbMsnry = new Masonry(streamElems[0], {
             itemSelector: "li",
             gutter: 20,
             transitionDuration: "0"
         });
     });
+    
+    for (var j = 1; j < streamElems.length; j++) {
+        streamElems[j].textContent = "You can only have <strong>1</strong> news stream. Because reasons.";
+    }
     
     /* insert modules */
     var moduleHTML = {

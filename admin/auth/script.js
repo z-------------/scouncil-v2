@@ -1,3 +1,5 @@
+var availableModules = ["member-list", "news-stream", "email-form", "social-links"];
+
 var xhr = function(url,callback) {
     var oReq = new XMLHttpRequest();
     oReq.onload = function(){
@@ -8,11 +10,26 @@ var xhr = function(url,callback) {
     oReq.send();
 };
 
-var fileList = document.querySelector(".file-list");
-var fileListItems = document.querySelectorAll(".file-list li");
+var fileList = document.querySelector("#file-list");
+var fileListItems = fileList.querySelectorAll("li");
+
+var moduleList = document.querySelector("#module-list");
 
 var editorElem = document.querySelector("#editor");
 var saveButton = document.querySelector("#save");
+var clearButton = document.querySelector("#clear");
+
+availableModules.forEach(function(moduleName){
+    var moduleListItem = document.createElement("li");
+    moduleListItem.textContent = moduleName;
+    
+    moduleListItem.addEventListener("click", function(){
+        wysiEditor.focus();
+        wysiEditor.composer.commands.exec("insertHTML", "<div class='module " + moduleName + "'></div>");
+    });
+    
+    moduleList.appendChild(moduleListItem);
+});
 
 [].slice.call(fileListItems).forEach(function(fileListItem){
     fileListItem.addEventListener("click", function(){
@@ -37,6 +54,14 @@ saveButton.addEventListener("click", function(){
 
             alert(response);
         });
+    }
+});
+
+clearButton.addEventListener("click", function(){
+    var really = confirm("Are you sure you want to clear this file?");
+    if (really) {
+        wysiEditor.focus();
+        wysiEditor.clear();
     }
 });
 
