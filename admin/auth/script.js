@@ -25,16 +25,19 @@ var saveButton = document.querySelector("#save");
             editorElem.dataset.filename = that.textContent;
         });
     });
-    
-    saveButton.addEventListener("click", function(){
-        var value = wysiEditor.getValue();
-        if (value) {
-            xhrURL = "/py/update_file.py?data=" + encodeURIComponent(value) + "&fname=" + encodeURIComponent(editorElem.dataset.filename);
-            xhr(xhrURL, function(r){
-                console.log(r);
-            });
-        }
-    });
+});
+
+saveButton.addEventListener("click", function(){
+    var value = wysiEditor.getValue();
+    if (value) {
+        xhrURL = "/py/update_file.py?data=" + encodeURIComponent(value) + "&fname=" + encodeURIComponent(editorElem.dataset.filename);
+        xhr(xhrURL, function(response){
+            var STATUS_OK = "OK";
+            var STATUS_ERROR = "ERROR";
+
+            alert(response);
+        });
+    }
 });
 
 /* initialise wysihtml editor */

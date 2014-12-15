@@ -14,3 +14,5 @@ if form["data"] and form["fname"]:
     f.write(data)
 
     print("OK")
+else:
+    print("ERROR")
