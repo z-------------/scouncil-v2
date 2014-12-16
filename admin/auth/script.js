@@ -65,6 +65,10 @@ availableModules.forEach(function(moduleName){
                 listElem.dataset.html = html;
                 listElem.querySelectorAll("p")[0].textContent = textContent;
                 
+                if (tagName.toLowerCase() === "img") {
+                    listElem.innerHTML += "<img src='" + elem.src + "'>";
+                }
+                
                 listElem.addEventListener("click", function(){
                     var oldHTML = this.dataset.html;
                     var newHTML = prompt("Editing '" + this.dataset.tagName + "'", this.dataset.html);

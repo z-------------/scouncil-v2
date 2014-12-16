@@ -1,3 +1,7 @@
+body {
+    font-family: sans-serif;
+}
+
 #file-list {
     display: inline-block;
 }
@@ -31,11 +35,15 @@
     background-color: #bbb;
     color: #555;
     border: 1px solid #555;
-    width: 500px;
     max-width: 100%;
     margin: 20px;
+    padding: 10px;
     position: relative;
     cursor: move;
+}
+
+#editor li img {
+    max-width: 500px;
 }
 
 #editor li.sortable-ghost {
