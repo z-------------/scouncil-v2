@@ -8,28 +8,31 @@
         <script src="/js/Sortable-0.7.1/Sortable.min.js"></script>
     </head>
     <body>
-        <ul id="file-list">
-            <?php
-                $dir = "../content";
-                $files = scandir($dir);
+        <aside>
+            <ul id="file-list">
+                <h2>Files</h2>
+                <?php
+                    $dir = "../content";
+                    $files = scandir($dir);
 
-                function filter_filetype($file_name) {
-                    if (!strrpos($file_name, ".html")) {
-                        return(FALSE);
+                    function filter_filetype($file_name) {
+                        if (!strrpos($file_name, ".html")) {
+                            return(FALSE);
+                        }
+                        return(TRUE);
                     }
-                    return(TRUE);
-                }
 
-                $files = array_filter($files,"filter_filetype");
+                    $files = array_filter($files,"filter_filetype");
 
-                foreach ($files as &$file_name) {
-                    print("<li>" . $file_name . "</li>");
-                }
-            ?>
-        </ul>
+                    foreach ($files as &$file_name) {
+                        print("<li>" . $file_name . "</li>");
+                    }
+                ?>
+            </ul>
+        </aside>
         
         <div id="editor-container">
-            <div id="module-list"></div>
+            <div id="module-list" style="display: none"></div>
             
             <ul id="editor"></ul>
             
