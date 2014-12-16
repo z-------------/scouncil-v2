@@ -5,6 +5,7 @@
 #file-list li {
     cursor: pointer;
     display: block;
+    padding: 5px;
 }
 
 #file-list li:hover {
@@ -25,21 +26,22 @@
     max-width: 100%;
 }
 
-#editor .module {
+#editor li {
     display: block;
     background-color: #bbb;
     color: #555;
     border: 1px solid #555;
     width: 500px;
-    height: 50px;
     max-width: 100%;
     margin: 20px;
     position: relative;
-    pointer-events: none;
+    cursor: move;
 }
 
-#editor .module:before {
-    content: attr(class);
-    position: absolute;
-    margin: 5px;
+#editor li.sortable-ghost {
+    opacity: 0;
+}
+
+#editor li > h2 {
+    margin: 0;
 }

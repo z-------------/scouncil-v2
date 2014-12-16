@@ -45,10 +45,35 @@ availableModules.forEach(function(moduleName){
         this.classList.add("current");
         
         xhr(location.protocol + "//" + location.host + "/admin/content/" + this.textContent, function(response){
-            editorElem.innerHTML = "";
-            editorElem.innerHTML += response;
+            var html = response;
             
+            var dom = document.createElement("body");
+            dom.innerHTML = html;
+            
+            editorElem.innerHTML = "";
             editorElem.dataset.filename = that.textContent;
+            
+            [].slice.call(dom.children).forEach(function(elem){
+                var tagName = elem.tagName;
+                var html = elem.innerHTML;
+                var textContent = elem.textContent;
+                
+                var listElem = document.createElement("li");
+                listElem.dataset.tagName = tagName;
+                listElem.innerHTML = "<h2>" + tagName + "</h2><p></p>";
+                
+                listElem.dataset.html = html;
+                listElem.querySelectorAll("p")[0].textContent = textContent;
+                
+                listElem.addEventListener("click", function(){
+                    var oldHTML = this.dataset.html;
+                    var newHTML = prompt("Editing '" + this.dataset.tagName + "'", this.dataset.html);
+                    
+                    if (newHTML !== null) this.dataset.html = newHTML;
+                });
+                
+                editorElem.appendChild(listElem);
+            });
         });
     });
 });
@@ -77,7 +102,7 @@ clearButton.addEventListener("click", function(){
 });
 
 /* initiliase Sortable */
-new Sortable(fileList, {
-    animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
-    draggable: "li", // Specifies which items inside the element should be sortable
+new Sortable(editorElem, {
+    animation: 150,
+    draggable: "li",
 });

@@ -14,7 +14,7 @@
                 $files = scandir($dir);
 
                 function filter_filetype($file_name) {
-                    if (!strrpos($file_name, ".html") && !strrpos($file_name, ".json")) {
+                    if (!strrpos($file_name, ".html")) {
                         return(FALSE);
                     }
                     return(TRUE);
@@ -31,7 +31,7 @@
         <div id="editor-container">
             <div id="module-list"></div>
             
-            <div id="editor" data-placeholder="Open a file from the list on the left..."></div>
+            <ul id="editor"></ul>
             
             <button id="clear">Clear</button>
             <button id="save">Save</button>
