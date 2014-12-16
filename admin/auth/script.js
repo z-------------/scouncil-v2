@@ -41,12 +41,13 @@ var really = function(str, callback) {
     callback(confirmVal);
 };
 
-var writeEditor = function(h, fileName) {
+var writeEditor = function(h, fileName, append) {
     var dom = document.createElement("body");
     dom.innerHTML = h;
 
-    editorElem.innerHTML = "";
-    editorElem.dataset.fileName = fileName;
+    if (append !== true) editorElem.innerHTML = "";
+    if (fileName) editorElem.dataset.fileName = fileName;
+    
     editorElem.dataset.origHtml = h;
 
     toArray(dom.children).forEach(function(elem){
@@ -69,6 +70,8 @@ var writeEditor = function(h, fileName) {
         if (tagName === "img") {
             listElem.innerHTML += "<img src='" + elem.src + "'>";
         }
+        
+        if (elem.getAttribute("src")) listElem.dataset.src = elem.getAttribute("src");
         
         if (elem.classList.contains("module")) {
             listElem.querySelectorAll("h3")[0].textContent = elem.classList.toString();
@@ -93,7 +96,7 @@ availableModules.forEach(function(moduleName){
     moduleListItem.textContent = moduleName;
     
     moduleListItem.addEventListener("click", function(){
-        editorElem.innerHTML += "<div class='module " + moduleName + "'></div>";
+        writeEditor("<div class='module " + moduleName + "'></div>", null, true);
     });
     
     moduleList.appendChild(moduleListItem);
@@ -118,7 +121,21 @@ saveButton.addEventListener("click", function(){
     var fileName = editorElem.dataset.fileName;
     var really = confirm("Are you sure you want to overwrite '" + fileName + "'?");
     if (really) {
-        var value = editorElem.innerHTML;
+        var value = "";
+        
+        var listElems = document.querySelectorAll("#editor li");
+        toArray(listElems).forEach(function(listElem){
+            var tagName = listElem.dataset.tagName;
+            var html = listElem.dataset.html;
+            
+            var classes = "";
+            if (listElem.getAttribute("class")) classes = listElem.getAttribute("class");
+            
+            var src = "";
+            if (listElem.dataset.src) src = " src='" + listElem.dataset.src + "'";
+            
+            value += "<" + tagName + " class='" + classes + "'" + src + ">" + html + "</" + tagName + ">";
+        });
 
         xhrURL = "/py/update_file.py?data=" + encodeURIComponent(value) + "&fname=" + encodeURIComponent(fileName);
         xhr(xhrURL, function(response){
