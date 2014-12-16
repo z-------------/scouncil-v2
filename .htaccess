@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Parse inline PHP in HTML
 <FilesMatch "\.html$">
     ForceType application/x-httpd-php
@@ -8,9 +7,3 @@
 <Files script.js>
     ForceType application/x-httpd-php
 </Files>
-=======
-AuthType Basic
-AuthName "admin dash"
-AuthUserFile /var/www/admin/.htpasswd
-require valid-user
->>>>>>> fdfcd22bf08a39d971b8113a2271ace35be892a7
