@@ -1,4 +1,9 @@
-AuthType Basic
-AuthName "restricted area"
-AuthUserFile /var/www/admin/.htpasswd
-require valid-user
+# Parse inline PHP in HTML
+<FilesMatch "\.html$">
+    ForceType application/x-httpd-php
+</FilesMatch>
+
+# Parse inline PHP in script.js
+<Files script.js>
+    ForceType application/x-httpd-php
+</Files>

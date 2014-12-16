@@ -1,0 +1,3 @@
+# Execute Python scripts
+Options +ExecCGI
+AddHandler cgi-script .py
