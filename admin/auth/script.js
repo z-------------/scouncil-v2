@@ -1,5 +1,14 @@
 var availableModules = ["member-list", "news-stream", "email-form", "social-links"];
 
+var fileList = document.querySelector("#file-list");
+var fileListItems = fileList.querySelectorAll("li");
+
+var moduleList = document.querySelector("#module-list");
+
+var editorElem = document.querySelector("#editor");
+var saveButton = document.querySelector("#save");
+var clearButton = document.querySelector("#clear");
+
 var xhr = function(url,callback) {
     var oReq = new XMLHttpRequest();
     oReq.onload = function(){
@@ -15,14 +24,44 @@ var really = function(str, callback) {
     callback(confirmVal);
 };
 
-var fileList = document.querySelector("#file-list");
-var fileListItems = fileList.querySelectorAll("li");
+var writeEditor = function(h, fileName) {
+    var dom = document.createElement("body");
+    dom.innerHTML = h;
 
-var moduleList = document.querySelector("#module-list");
+    editorElem.innerHTML = "";
+    editorElem.dataset.fileName = fileName;
+    editorElem.dataset.origHtml = h;
 
-var editorElem = document.querySelector("#editor");
-var saveButton = document.querySelector("#save");
-var clearButton = document.querySelector("#clear");
+    [].slice.call(dom.children).forEach(function(elem){
+        var tagName = elem.tagName;
+        var html = elem.innerHTML;
+        var textContent = elem.textContent;
+
+        var listElem = document.createElement("li");
+        listElem.dataset.tagName = tagName;
+        listElem.innerHTML = "<h2>" + tagName + "</h2><h3></h3><p></p>";
+
+        listElem.dataset.html = html;
+        listElem.querySelectorAll("p")[0].textContent = textContent;
+
+        if (tagName.toLowerCase() === "img") {
+            listElem.innerHTML += "<img src='" + elem.src + "'>";
+        }
+        
+        if (elem.classList.contains("module")) {
+            listElem.querySelectorAll("h3")[0].textContent = elem.classList.toString();
+        }
+
+        listElem.addEventListener("click", function(){
+            var oldHTML = this.dataset.html;
+            var newHTML = prompt("Editing '" + this.dataset.tagName + "'", this.dataset.html);
+
+            if (newHTML !== null) this.dataset.html = newHTML;
+        });
+
+        editorElem.appendChild(listElem);
+    });
+}
 
 availableModules.forEach(function(moduleName){
     var moduleListItem = document.createElement("li");
@@ -45,45 +84,13 @@ availableModules.forEach(function(moduleName){
         this.classList.add("current");
         
         xhr(location.protocol + "//" + location.host + "/admin/content/" + this.textContent, function(response){
-            var html = response;
-            
-            var dom = document.createElement("body");
-            dom.innerHTML = html;
-            
-            editorElem.innerHTML = "";
-            editorElem.dataset.filename = that.textContent;
-            
-            [].slice.call(dom.children).forEach(function(elem){
-                var tagName = elem.tagName;
-                var html = elem.innerHTML;
-                var textContent = elem.textContent;
-                
-                var listElem = document.createElement("li");
-                listElem.dataset.tagName = tagName;
-                listElem.innerHTML = "<h2>" + tagName + "</h2><p></p>";
-                
-                listElem.dataset.html = html;
-                listElem.querySelectorAll("p")[0].textContent = textContent;
-                
-                if (tagName.toLowerCase() === "img") {
-                    listElem.innerHTML += "<img src='" + elem.src + "'>";
-                }
-                
-                listElem.addEventListener("click", function(){
-                    var oldHTML = this.dataset.html;
-                    var newHTML = prompt("Editing '" + this.dataset.tagName + "'", this.dataset.html);
-                    
-                    if (newHTML !== null) this.dataset.html = newHTML;
-                });
-                
-                editorElem.appendChild(listElem);
-            });
+            writeEditor(response, that.textContent);
         });
     });
 });
 
 saveButton.addEventListener("click", function(){
-    var fileName = editorElem.dataset.filename;
+    var fileName = editorElem.dataset.fileName;
     var really = confirm("Are you sure you want to overwrite '" + fileName + "'?");
     if (really) {
         var value = editorElem.innerHTML;
@@ -99,9 +106,16 @@ saveButton.addEventListener("click", function(){
 });
 
 clearButton.addEventListener("click", function(){
-    var really = confirm("Are you sure you want to delete everything from this file?");
+    var really = confirm("Are you sure you want to delete everything from '" + editorElem.dataset.fileName + "'?");
     if (really) {
         editorElem.innerHTML = "";
+    }
+});
+
+reset.addEventListener("click", function(){
+    var really = confirm("Are you sure you want to reset '" + editorElem.dataset.fileName + "' to its previous state?");
+    if (really) {
+        writeEditor(editorElem.dataset.origHtml, editorElem.dataset.fileName);
     }
 });
 
