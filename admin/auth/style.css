@@ -47,7 +47,9 @@ body {
 }
 
 #editor li.sortable-ghost {
-    opacity: 0;
+    background: none;
+    color: transparent;
+    border: 1px dotted rgba(0, 0, 0, .3);
 }
 
 #editor li > h2 {

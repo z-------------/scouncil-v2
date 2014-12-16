@@ -57,6 +57,7 @@ var writeEditor = function(h, fileName) {
             var newHTML = prompt("Editing '" + this.dataset.tagName + "'", this.dataset.html);
 
             if (newHTML !== null) this.dataset.html = newHTML;
+            this.querySelector("p").innerHTML = newHTML;
         });
 
         editorElem.appendChild(listElem);
