@@ -12,14 +12,13 @@ shh it's top secret
 
 ## Configure
 
-Add these lines to your `php5.conf` (to allow execution of inline PHP in HTML and `script.js`):
+Make sure that your Apache2 configuration recognises `.htaccess` files:
 
 ```
-<FilesMatch "\.html$">
-    ForceType application/x-httpd-php
-</FilesMatch>
-
-<Files script.js>
-    ForceType application/x-httpd-php
-</Files>
+# apache2.conf
+<Directory /var/www>
+	Options Indexes FollowSymLinks
+	AllowOverride All
+	Require all granted
+</Directory>
 ```
