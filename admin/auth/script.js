@@ -10,6 +10,11 @@ var xhr = function(url,callback) {
     oReq.send();
 };
 
+var really = function(str, callback) {
+    var confirmVal = confirm(str);
+    callback(confirmVal);
+};
+
 var fileList = document.querySelector("#file-list");
 var fileListItems = fileList.querySelectorAll("li");
 
@@ -24,8 +29,7 @@ availableModules.forEach(function(moduleName){
     moduleListItem.textContent = moduleName;
     
     moduleListItem.addEventListener("click", function(){
-        wysiEditor.focus();
-        wysiEditor.composer.commands.exec("insertHTML", "<div class='module " + moduleName + "'></div>");
+        editorElem.innerHTML += "<div class='module " + moduleName + "'></div>";
     });
     
     moduleList.appendChild(moduleListItem);
@@ -34,10 +38,15 @@ availableModules.forEach(function(moduleName){
 [].slice.call(fileListItems).forEach(function(fileListItem){
     fileListItem.addEventListener("click", function(){
         var that = this;
+        
+        [].slice.call(fileListItems).forEach(function(listItem){
+            listItem.classList.remove("current");
+        });
+        this.classList.add("current");
+        
         xhr(location.protocol + "//" + location.host + "/admin/content/" + this.textContent, function(response){
-            wysiEditor.focus();
-            wysiEditor.clear();
-            wysiEditor.composer.commands.exec("insertHTML", response);
+            editorElem.innerHTML = "";
+            editorElem.innerHTML += response;
             
             editorElem.dataset.filename = that.textContent;
         });
@@ -45,9 +54,12 @@ availableModules.forEach(function(moduleName){
 });
 
 saveButton.addEventListener("click", function(){
-    var value = wysiEditor.getValue();
-    if (value) {
-        xhrURL = "/py/update_file.py?data=" + encodeURIComponent(value) + "&fname=" + encodeURIComponent(editorElem.dataset.filename);
+    var fileName = editorElem.dataset.filename;
+    var really = confirm("Are you sure you want to overwrite '" + fileName + "'?");
+    if (really) {
+        var value = editorElem.innerHTML;
+
+        xhrURL = "/py/update_file.py?data=" + encodeURIComponent(value) + "&fname=" + encodeURIComponent(fileName);
         xhr(xhrURL, function(response){
             var STATUS_OK = "OK";
             var STATUS_ERROR = "ERROR";
@@ -58,18 +70,14 @@ saveButton.addEventListener("click", function(){
 });
 
 clearButton.addEventListener("click", function(){
-    var really = confirm("Are you sure you want to clear this file?");
+    var really = confirm("Are you sure you want to delete everything from this file?");
     if (really) {
-        wysiEditor.focus();
-        wysiEditor.clear();
+        editorElem.innerHTML = "";
     }
 });
 
-/* initialise wysihtml editor */
-wysihtml5ParserRules.tags.div = {remove: 0};
-
-var wysiEditor = new wysihtml5.Editor("editor", {
-    toolbar: "toolbar",
-    parserRules:  wysihtml5ParserRules,
-    cleanUp: false
+/* initiliase Sortable */
+new Sortable(fileList, {
+    animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+    draggable: "li", // Specifies which items inside the element should be sortable
 });

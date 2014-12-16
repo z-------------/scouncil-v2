@@ -11,6 +11,11 @@
     font-weight: 700;
 }
 
+#file-list li.current {
+    background-color: #ccc;
+    font-weight: 700;
+}
+
 #editor {
     padding: 20px;
     background: #ddd;

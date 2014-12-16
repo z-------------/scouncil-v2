@@ -5,8 +5,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
         
-        <script src="/js/wysihtml-0.4.17/dist/wysihtml5x-toolbar.min.js"></script>
-        <script src="/js/wysihtml-0.4.17/parser_rules/advanced_and_extended.js"></script>
+        <script src="/js/Sortable-0.7.1/Sortable.min.js"></script>
     </head>
     <body>
         <ul id="file-list">
@@ -32,16 +31,9 @@
         <div id="editor-container">
             <div id="module-list"></div>
             
-            <div id="toolbar">
-                <button id="clear">Clear</button>
-                <a data-wysihtml5-command="bold"><b>B</b></a>
-                <a data-wysihtml5-command="italic"><i>I</i></a>
-                <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">&lt;H1&gt;</a>
-                <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">&lt;P&gt;</a>
-            </div>
-
             <div id="editor" data-placeholder="Open a file from the list on the left..."></div>
             
+            <button id="clear">Clear</button>
             <button id="save">Save</button>
         </div>
         
