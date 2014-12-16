@@ -1,4 +1,4 @@
 AuthType Basic
-AuthName "restricted area"
+AuthName "admin dash"
 AuthUserFile /var/www/admin/.htpasswd
 require valid-user
