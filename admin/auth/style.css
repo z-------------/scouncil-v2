@@ -52,6 +52,10 @@ body {
     border: 1px dotted rgba(0, 0, 0, .3);
 }
 
+#editor li.sortable-ghost * {
+    opacity: 0;
+}
+
 #editor li > h2 {
     margin: 0;
 }
