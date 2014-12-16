@@ -129,7 +129,7 @@ saveButton.addEventListener("click", function(){
             var html = listElem.dataset.html;
             
             var classes = "";
-            if (listElem.getAttribute("class")) classes = listElem.getAttribute("class");
+            if (listElem.querySelectorAll("h3")[0].textContent) classes = listElem.querySelectorAll("h3")[0].textContent;
             
             var src = "";
             if (listElem.dataset.src) src = " src='" + listElem.dataset.src + "'";

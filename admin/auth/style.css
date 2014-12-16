@@ -45,7 +45,7 @@ aside h2 {
 }
 
 #file-list li.current {
-    background-color: #ccc;
+    background-color: rgba(0, 0, 0, .1);
     font-weight: 700;
 }
 
@@ -60,7 +60,7 @@ aside h2 {
 
 #editor {
     padding: 10px;
-    background: #ddd;
+    background: #eee;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -73,12 +73,13 @@ aside h2 {
 
 #editor li {
     display: block;
-    background-color: #bbb;
-    color: #555;
-    border: 1px solid #555;
+    background-color: rgba(0, 0, 0, .1);
+    color: black;
+    border-bottom: 2px solid rgba(0, 0, 0, .3);
+    border-radius: 4px;
     max-width: 100%;
     margin: 20px;
-    padding: 10px;
+    padding: 10px 20px;
     position: relative;
     cursor: move;
 }
@@ -90,7 +91,7 @@ aside h2 {
 #editor li.sortable-ghost {
     background: none;
     color: transparent;
-    border: 1px dotted rgba(0, 0, 0, .3);
+    border: 2px dotted rgba(0, 0, 0, .3);
 }
 
 #editor li.sortable-ghost * {
