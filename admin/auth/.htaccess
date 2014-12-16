@@ -1,0 +1,5 @@
+# Password protect admin directory
+AuthType Basic
+AuthName "admin dash"
+AuthUserFile /var/www/admin/auth/.htpasswd
+require valid-user

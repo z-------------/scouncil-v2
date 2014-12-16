@@ -22,7 +22,7 @@
                         return(TRUE);
                     }
 
-                    $files = array_filter($files,"filter_filetype");
+                    $files = array_filter($files, "filter_filetype");
 
                     foreach ($files as &$file_name) {
                         print("<li>" . $file_name . "</li>");
