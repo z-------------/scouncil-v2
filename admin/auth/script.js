@@ -62,7 +62,7 @@ var writeEditor = function(h, fileName, append) {
         
         var listElem = document.createElement("li");
         listElem.dataset.tagName = tagName;
-        listElem.innerHTML = "<h2>" + tagNameHr + "</h2><h3></h3><p></p>";
+        listElem.innerHTML = "<h2>" + tagNameHr + "</h2><h3></h3><p></p><div class='dragger'></div>";
 
         listElem.dataset.html = html;
         listElem.querySelectorAll("p")[0].textContent = textContent;
@@ -162,4 +162,5 @@ reset.addEventListener("click", function(){
 new Sortable(editorElem, {
     animation: 150,
     draggable: "li",
+    handle: ".dragger"
 });
