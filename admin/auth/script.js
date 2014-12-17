@@ -62,10 +62,20 @@ var writeEditor = function(h, fileName, append) {
         
         var listElem = document.createElement("li");
         listElem.dataset.tagName = tagName;
-        listElem.innerHTML = "<div class='tagname'>" + tagNameHr + "</div><div class='modulename'></div><p class='content'></p><div class='dragger'></div>";
+        listElem.innerHTML = "<div class='tagname'>" + tagNameHr + "</div><div class='attrlist'></div><div class='modulename'></div><p class='content'></p><div class='dragger'></div>";
 
         listElem.dataset.html = html;
         listElem.querySelectorAll(".content")[0].textContent = textContent;
+        
+        var attributes = elem.attributes;
+        var attributesJSON = {};
+        for (var i = 0; i < attributes.length; i++) {
+            var attr = attributes[i];
+            attributesJSON[attr.nodeName] = attr.value;
+        }
+        listElem.dataset.attrs = JSON.stringify(attributesJSON);
+        
+        listElem.querySelectorAll(".attrlist")[0].textContent = listElem.dataset.attrs;
         
         if (tagName === "img") {
             listElem.querySelectorAll(".content")[0].innerHTML += "<img src='" + elem.src + "'>";
