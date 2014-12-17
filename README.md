@@ -15,8 +15,8 @@ shh it's top secret
 ### .htaccess
 Make sure that your Apache2 configuration recognises `.htaccess` files, add these lines to your `apache2.conf` (usually in `/etc/apache2`):
 
-```
-<Directory /var/www> # assuming that your Apache DocumentRoot is /var/www
+```apache
+<Directory /var/www> #assuming that your Apache DocumentRoot is /var/www
 	Options Indexes FollowSymLinks
 	AllowOverride All
 	Require all granted
