@@ -62,19 +62,19 @@ var writeEditor = function(h, fileName, append) {
         
         var listElem = document.createElement("li");
         listElem.dataset.tagName = tagName;
-        listElem.innerHTML = "<h2>" + tagNameHr + "</h2><h3></h3><p></p><div class='dragger'></div>";
+        listElem.innerHTML = "<div class='tagname'>" + tagNameHr + "</div><div class='modulename'></div><p class='content'></p><div class='dragger'></div>";
 
         listElem.dataset.html = html;
-        listElem.querySelectorAll("p")[0].textContent = textContent;
+        listElem.querySelectorAll(".content")[0].textContent = textContent;
         
         if (tagName === "img") {
-            listElem.innerHTML += "<img src='" + elem.src + "'>";
+            listElem.querySelectorAll(".content")[0].innerHTML += "<img src='" + elem.src + "'>";
         }
         
         if (elem.getAttribute("src")) listElem.dataset.src = elem.getAttribute("src");
         
         if (elem.classList.contains("module")) {
-            listElem.querySelectorAll("h3")[0].textContent = elem.classList.toString();
+            listElem.querySelectorAll(".modulename")[0].textContent = elem.classList.toString();
         }
 
         listElem.addEventListener("click", function(){
@@ -83,7 +83,7 @@ var writeEditor = function(h, fileName, append) {
 
             if (newHTML !== null) {
                 this.dataset.html = newHTML;
-                this.querySelector("p").innerHTML = newHTML;
+                this.querySelector(".content").innerHTML = newHTML;
             }
         });
 
