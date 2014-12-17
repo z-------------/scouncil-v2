@@ -27,3 +27,12 @@ Make sure that your Apache2 configuration recognises `.htaccess` files, add thes
 Consider changing your admin password in `admin/auth/.htpasswd` (I recommend David Walsh's [.htpasswd Username & Password Generator](http://davidwalsh.name/web-development-tools#htaccess-status-message)).
 The default username is "admin" and the password is "default".
 When editing `.htpasswd`, make sure that there is no newline at the end of the file.
+
+### One more thing
+The `.htaccess` file inside `admin/auth` assumes that your `DocumentRoot` is `/var/www`. **If it isn't**, please change `admin/auth/.htaccess` accordingly:
+
+Find this line:
+
+`AuthUserFile /var/www/admin/auth/.htpasswd`
+
+and replace `/var/www` with the path of your `DocumentRoot` (if it isn't `/var/www`)
