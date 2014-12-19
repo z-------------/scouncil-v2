@@ -113,6 +113,7 @@ header {
     left: 0;
     width: 250px;
     padding: 50px 31px;
+    padding-right: 0;
 }
 
 header img {
@@ -194,7 +195,7 @@ header h1 {
 
 section {
     right: 0;
-    width: calc(100% - 250px);
+    width: calc(100% - 200px);
     padding: 50px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -242,19 +243,19 @@ section img, .module.news-stream li.expanded, .module.news-stream li:hover {
 }
 
 .module.member-list li.general .snippet {
-    box-shadow: 0 0 0 5px #e4bb18, 0 3px 7px 3px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, .3)/*, 0 3px 7px 3px rgba(0, 0, 0, .3)*/;
 }
 
 .module.member-list li.apprentice .snippet {
-    box-shadow: 0 0 0 5px #ccc, 0 3px 7px 3px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 0 5px rgba(127, 127, 127, .3)/*, 0 3px 7px 3px rgba(0, 0, 0, .3)*/;
 }
 
 .module.member-list li.general .snippet:hover, .module.member-list li.general.expanded .snippet {
-    box-shadow: 0 0 0 5px #e4bb18, 0 5px 10px 5px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, .3)/*, 0 5px 10px 5px rgba(0, 0, 0, .3)*/;
 }
 
 .module.member-list li.apprentice .snippet:hover, .module.member-list li.apprentice.expanded .snippet {
-    box-shadow: 0 0 0 5px #ccc, 0 5px 10px 5px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 0 10px rgba(127, 127, 127, .3)/*, 0 5px 10px 5px rgba(0, 0, 0, .3)*/;
 }
 
 .module.member-list li .snippet {
@@ -374,17 +375,30 @@ input, textarea, button {
     margin: 20px 0;
     color: inherit;
     max-width: 100%;
+    
+    transition-property: background, color;
 }
 
 input, textarea {
-    background: rgba(255, 255, 255, .2);
+    background-color: rgba(255, 255, 255, .2);
     padding: 10px;
     width: 500px;
     resize: none;
 }
 
+input:focus, textarea:focus {
+    background-color: rgba(255, 255, 255, .8);
+    color: #222;
+}
+
 ::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, .7);
+    color: rgba(255, 255, 255, .5);
+    
+    transition-property: color;
+}
+
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, .5);
 }
 
 button {
