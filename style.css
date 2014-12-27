@@ -169,13 +169,17 @@ header nav > a:after {
     bottom: 0;
     height: 2px;
     width: 0;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, .8);
     
-    transition-property: width;
+    transition-property: width, color;
 }
 
 header nav > a:hover, header nav > a.current {
     color: #fff;
+}
+
+header nav > a:hover:after, header nav > a.current:after {
+    background-color: #fff;
 }
 
 header nav > a:hover:after {
