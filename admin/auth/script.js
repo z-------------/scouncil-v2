@@ -1,5 +1,5 @@
 var availableModules = ["member-list", "news-stream", "email-form", "social-links"];
-
+var noEditTags = ["img"];
 var hrTags = {
     h1: "Header 1",
     h2: "Header 2",
@@ -10,7 +10,8 @@ var hrTags = {
     p: "Paragraph",
     img: "Image",
     ul: "Bullet list",
-    ol: "Numbered list"
+    ol: "Numbered list",
+    div: "HTML block"
 };
 
 var xhr = function(url,callback) {
@@ -62,7 +63,11 @@ var writeEditor = function(h, fileName, append) {
         
         var listElem = document.createElement("li");
         listElem.dataset.tagName = tagName;
-        listElem.innerHTML = "<div class='tagname'>" + tagNameHr + "</div><div class='attrlist'></div><div class='modulename'></div><p class='content'></p><div class='dragger'></div>";
+        listElem.innerHTML = "<div class='tagname'>" + tagNameHr + "</div><div class='attrlist'></div><div class='modulename'></div><p class='content'></p>\
+<div class='controls'>\
+<button class='control edit'>Edit</button>\
+</div>\
+<div class='dragger'></div>";
 
         listElem.dataset.html = html;
         listElem.querySelectorAll(".content")[0].textContent = textContent;
@@ -86,16 +91,24 @@ var writeEditor = function(h, fileName, append) {
         if (elem.classList.contains("module")) {
             listElem.querySelectorAll(".modulename")[0].textContent = elem.classList.toString();
         }
+        
+        var editButton = listElem.querySelector(".control.edit");
+        
+        if (elem.classList.contains("module") || noEditTags.indexOf(tagName) !== -1) {
+            editButton.style.display = "none";
+        } else {
+            editButton.addEventListener("click", function(){
+                var liElem = this.parentElement.parentElement;
+                
+                var oldHTML = liElem.dataset.html;
+                var newHTML = prompt("Editing '" + liElem.dataset.tagName + "'", liElem.dataset.html);
 
-        listElem.addEventListener("click", function(){
-            var oldHTML = this.dataset.html;
-            var newHTML = prompt("Editing '" + this.dataset.tagName + "'", this.dataset.html);
-
-            if (newHTML !== null) {
-                this.dataset.html = newHTML;
-                this.querySelector(".content").innerHTML = newHTML;
-            }
-        });
+                if (newHTML !== null) {
+                    liElem.dataset.html = newHTML;
+                    liElem.querySelector(".content").innerHTML = newHTML;
+                }
+            });
+        }
 
         editorElem.appendChild(listElem);
     });
