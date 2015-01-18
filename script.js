@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function(){
             
             var date = new Date(entries[i].updated).toDateString();
             var content = entries[i].content.replace(/<img[^>]+\>/ig, "");
-            entryElem.innerHTML = "<div class='entry-deco'></div><div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
+            entryElem.innerHTML = "<div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
             
             entryElem.addEventListener("click", function(){
                 streamElems[0].classList.toggle("dimmed");
@@ -199,7 +199,8 @@ document.addEventListener("DOMContentLoaded", function(){
         fbMsnry = new Masonry(streamElems[0], {
             itemSelector: "li",
             gutter: 20,
-            transitionDuration: "0"
+            transitionDuration: "0",
+            columnWidth: 449
         });
     });
     
