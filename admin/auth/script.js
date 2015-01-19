@@ -45,13 +45,17 @@ var really = function(str, callback) {
 var updateCodeBlock = function(elem, html) {
     elem.dataset.html = html;
     elem.querySelector(".content").innerHTML = html;
+};
+
+var clearEditor = function() {
+    editorElem.innerHTML = "";
 }
 
 var writeEditor = function(h, fileName, append) {
     var dom = document.createElement("body");
     dom.innerHTML = h;
 
-    if (append !== true) editorElem.innerHTML = "";
+    if (append !== true) clearEditor();
     if (fileName) editorElem.dataset.fileName = fileName;
     
     editorElem.dataset.origHtml = h;
@@ -71,6 +75,7 @@ var writeEditor = function(h, fileName, append) {
         listElem.innerHTML = "<div class='tagname'>" + tagNameHr + "</div><div class='attrlist'></div><div class='modulename'></div><p class='content'></p>\
 <div class='controls'>\
 <button class='control edit'>Edit</button>\
+<button class='control remove'>Remove</button>\
 </div>\
 <div class='dragger'></div>";
 
@@ -100,6 +105,7 @@ var writeEditor = function(h, fileName, append) {
         }
         
         var editButton = listElem.querySelector(".control.edit");
+        var removeButton = listElem.querySelector(".control.remove");
         
         if (elem.classList.contains("module") || noEditTags.indexOf(tagName) !== -1) {
             editButton.style.display = "none";
@@ -115,6 +121,11 @@ var writeEditor = function(h, fileName, append) {
                 }
             });
         }
+        
+        removeButton.addEventListener("click", function(){
+            var liElem = this.parentElement.parentElement;
+            liElem.parentElement.removeChild(liElem);
+        });
 
         editorElem.appendChild(listElem);
     });
@@ -125,7 +136,9 @@ availableModules.forEach(function(moduleName){
     moduleListItem.textContent = moduleName;
     
     moduleListItem.addEventListener("click", function(){
-        writeEditor("<div class='module " + moduleName + "'></div>", null, true);
+        if (editorElem.dataset.fileName) {
+            writeEditor("<div class='module " + moduleName + "'></div>", null, true);
+        }
     });
     
     moduleList.appendChild(moduleListItem);
@@ -140,6 +153,7 @@ toArray(fileListItems).forEach(function(fileListItem){
         });
         this.classList.add("current");
         
+        clearEditor();
         xhr(location.protocol + "//" + location.host + "/admin/content/" + this.textContent, function(response){
             writeEditor(response, that.textContent);
         });
@@ -184,16 +198,16 @@ saveButton.addEventListener("click", function(){
 clearButton.addEventListener("click", function(){
     var really = confirm("Are you sure you want to delete everything from '" + editorElem.dataset.fileName + "'?");
     if (really) {
-        editorElem.innerHTML = "";
+        clearEditor();
     }
 });
 
-reset.addEventListener("click", function(){
+/*reset.addEventListener("click", function(){
     var really = confirm("Are you sure you want to reset '" + editorElem.dataset.fileName + "' to its previous state?");
     if (really) {
         writeEditor(editorElem.dataset.origHtml, editorElem.dataset.fileName);
     }
-});
+});*/
 
 /* initiliase Sortable */
 new Sortable(editorElem, {

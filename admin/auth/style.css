@@ -30,25 +30,26 @@ aside {
 
 aside h2 {
     text-align: center;
+    margin-bottom: 5px;
 }
 
-#file-list {
+aside ul {
     display: block;
     padding: 0;
 }
 
-#file-list li {
+aside li {
     cursor: pointer;
     display: block;
     padding: 5px;
     padding-left: 20px;
 }
 
-#file-list li:hover {
-    font-weight: 700;
+aside li:hover {
+    background-color: rgba(0, 0, 0, .05);
 }
 
-#file-list li.current {
+aside li.current {
     background-color: rgba(0, 0, 0, .1);
     font-weight: 700;
 }
@@ -63,7 +64,7 @@ aside h2 {
 }
 
 #editor {
-    padding: 10px;
+    padding: 0;
     background: #eee;
     width: 100%;
     height: 100%;
@@ -77,17 +78,15 @@ aside h2 {
 
 #editor li {
     display: block;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: #DDD;
     color: black;
-    border-bottom: 2px solid rgba(0, 0, 0, .3);
-    border-radius: 4px;
     max-width: 100%;
-    margin: 20px;
     padding: 10px 15px;
     padding-top: 15px;
     padding-right: 70px;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid #AAA;
 }
 
 #editor li img {

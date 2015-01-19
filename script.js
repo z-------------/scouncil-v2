@@ -14,61 +14,62 @@ var LinkshimAsyncLink = {
 
 document.addEventListener("DOMContentLoaded", function(){
     var memberULs = document.querySelectorAll(".module.member-list");
-
+    
     var members = <?php include("admin/content/members.json"); ?>.members;
 
-    for (i=0; i<members.length; i++) {
+    members.forEach(function(member){
         var listItem = document.createElement("li");
         
         var apprenticeString = "";
-        if (members[i].cabinet == "apprentice") {
+        if (member.cabinet == "apprentice") {
             apprenticeString = "Apprentice ";
         }
         
         listItem.innerHTML = "<div class='snippet'></div><div class='detail-arrow'></div><div class='detail'><h3></h3><h4></h4><p></p></div>";
         
-        var snippetElem = listItem.querySelector(".snippet");
+        listItem.querySelector(".detail h3").textContent = member.name;
+        listItem.querySelector(".detail h4").textContent = apprenticeString + member.role;
+        listItem.querySelector(".detail p").textContent = member.bio;
         
-        snippetElem.style.backgroundImage = "url(" + members[i].photo + ")";
-        snippetElem.addEventListener("click", function(){
-            var liElem = this.parentElement;
-            if (liElem.classList.contains("expanded")) {
-                liElem.classList.remove("expanded");
-            } else {
-                var expandedElems = document.querySelectorAll(".module.member-list li.expanded");
-                for (var i = 0; i < expandedElems.length; i++) {
-                    expandedElems[i].classList.remove("expanded");
-                }
-                
-                var detailElem = liElem.querySelector(".detail");
-                var arrowElem = liElem.querySelector(".detail-arrow");
-                
-                var delay = 0;
-                if (expandedElems.length !== 0) delay = 300;
-                
-                var that = this;
-                
-                setTimeout(function(){
-                    detailElem.style.top = that.offsetTop + that.offsetHeight + "px";
-                    
-                    arrowElem.style.top = that.offsetTop + that.offsetHeight + "px";
-                    
-                    liElem.style.height = liElem.offsetHeight + detailElem.offsetHeight + 20 + "px";
-                    liElem.classList.add("expanded");
-                }, delay);
-            }
-        });
-        
-        listItem.querySelector(".detail h3").textContent = members[i].name;
-        listItem.querySelector(".detail h4").textContent = apprenticeString + members[i].role;
-        listItem.querySelector(".detail p").textContent = members[i].bio;
-        
-        listItem.classList.add(members[i].cabinet);
+        listItem.classList.add(member.cabinet);
         
         [].slice.call(memberULs).forEach(function(memberUL){
-            memberUL.appendChild(listItem);
+            var clonedLI = listItem.cloneNode(true);
+            var snippetElem = clonedLI.querySelector(".snippet");
+
+            snippetElem.style.backgroundImage = "url(" + member.photo + ")";
+            snippetElem.addEventListener("click", function(){
+                var liElem = this.parentElement;
+                if (liElem.classList.contains("expanded")) {
+                    liElem.classList.remove("expanded");
+                } else {
+                    var expandedElems = document.querySelectorAll(".module.member-list li.expanded");
+                    for (var i = 0; i < expandedElems.length; i++) {
+                        expandedElems[i].classList.remove("expanded");
+                    }
+
+                    var detailElem = liElem.querySelector(".detail");
+                    var arrowElem = liElem.querySelector(".detail-arrow");
+
+                    var delay = 0;
+                    if (expandedElems.length !== 0) delay = 300;
+
+                    var that = this;
+
+                    setTimeout(function(){
+                        detailElem.style.top = that.offsetTop + that.offsetHeight + "px";
+
+                        arrowElem.style.top = that.offsetTop + that.offsetHeight + "px";
+
+                        liElem.style.height = liElem.offsetHeight + detailElem.offsetHeight + 20 + "px";
+                        liElem.classList.add("expanded");
+                    }, delay);
+                }
+            });
+            
+            memberUL.appendChild(clonedLI);
         });
-    }
+    });
 
     function switchSection(hash) {
         var i;
