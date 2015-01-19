@@ -10,6 +10,8 @@ shh it's top secret
 
 + `php5` and `libapache2-mod-php5`
 
+These can all be installed with `apt-get`.
+
 ## Configure
 
 ### .htaccess
@@ -24,9 +26,11 @@ Make sure that your Apache2 configuration recognises `.htaccess` files, add thes
 ```
 
 ### Admin password
-Consider changing your admin password in `admin/auth/.htpasswd` (I recommend David Walsh's [.htpasswd Username & Password Generator](http://davidwalsh.name/web-development-tools#htaccess-status-message)).
+Consider changing your admin password in `admin/auth/.htpasswd` (To properly encode it, use David Walsh's [.htpasswd Username & Password Generator](http://davidwalsh.name/web-development-tools#htaccess-status-message)).
+
 The default username is "admin" and the password is "default".
-When editing `.htpasswd`, make sure that there is no newline at the end of the file.
+
+When editing `.htpasswd`, make sure that there is **no newline** at the end of the file, otherwise the server will become confused and hurt itself. It's not very effective.
 
 ### One more thing
 The `.htaccess` file inside `admin/auth` assumes that your `DocumentRoot` is `/var/www`. **If it isn't**, please change `admin/auth/.htaccess` accordingly:
