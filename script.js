@@ -171,12 +171,15 @@ document.addEventListener("DOMContentLoaded", function(){
     /* facebook feed stuff */
     var fbURL = "py/fb.py";
     var streamElems = document.querySelectorAll(".module.news-stream");
+    streamElems[0].innerHTML = "<li class='loading'></li>";
     
     var fbMsnry;
 
     xhr(fbURL, function(r){
         r = JSON.parse(r);
         var entries = r.entries;
+        
+        streamElems[0].innerHTML = "";
 
         for (var i = 0; i < 10; i++) {
             var entryElem = document.createElement("li");
@@ -205,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
     
     for (var j = 1; j < streamElems.length; j++) {
-        streamElems[j].textContent = "You can only have <strong>1</strong> news stream. Because reasons.";
+        streamElems[j].textContent = "You can only have <strong>1</strong> news stream. Because reasons. Sorry.";
     }
     
     /* insert modules */
