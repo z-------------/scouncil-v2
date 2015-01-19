@@ -42,6 +42,11 @@ var really = function(str, callback) {
     callback(confirmVal);
 };
 
+var updateCodeBlock = function(elem, html) {
+    elem.dataset.html = html;
+    elem.querySelector(".content").innerHTML = html;
+}
+
 var writeEditor = function(h, fileName, append) {
     var dom = document.createElement("body");
     dom.innerHTML = h;
@@ -72,15 +77,17 @@ var writeEditor = function(h, fileName, append) {
         listElem.dataset.html = html;
         listElem.querySelectorAll(".content")[0].textContent = textContent;
         
-        var attributes = elem.attributes;
-        var attributesJSON = {};
-        for (var i = 0; i < attributes.length; i++) {
-            var attr = attributes[i];
-            attributesJSON[attr.nodeName] = attr.value;
-        }
-        listElem.dataset.attrs = JSON.stringify(attributesJSON);
-        
-        listElem.querySelectorAll(".attrlist")[0].textContent = listElem.dataset.attrs;
+        var attributes = [].slice.call(elem.attributes).filter(function(attr){return attr.nodeName.toLowerCase() !== "class"});
+        var attributesElem = listElem.querySelectorAll(".attrlist")[0];
+        attributes.forEach(function(attr){
+            var key = attr.nodeName;
+            var val = attr.value;
+            
+            attributesElem.innerHTML += "<div class='attr-container'>\
+<span>" + key + "</span>\
+<input data-attrname='" + key + "' value='" + val + "'>\
+</div>";
+        });
         
         if (tagName === "img") {
             listElem.querySelectorAll(".content")[0].innerHTML += "<img src='" + elem.src + "'>";
@@ -104,8 +111,7 @@ var writeEditor = function(h, fileName, append) {
                 var newHTML = prompt("Editing '" + liElem.dataset.tagName + "'", liElem.dataset.html);
 
                 if (newHTML !== null) {
-                    liElem.dataset.html = newHTML;
-                    liElem.querySelector(".content").innerHTML = newHTML;
+                    updateCodeBlock(liElem, newHTML);
                 }
             });
         }
@@ -150,14 +156,22 @@ saveButton.addEventListener("click", function(){
         toArray(listElems).forEach(function(listElem){
             var tagName = listElem.dataset.tagName;
             var html = listElem.dataset.html;
-            
             var classes = "";
-            if (listElem.querySelectorAll(".modulename")[0].textContent) classes = listElem.querySelectorAll(".modulename")[0].textContent;
+            var attrs = [];
             
-            var src = "";
-            if (listElem.dataset.src) src = " src='" + listElem.dataset.src + "'";
+            var attrElems = [].slice.call(listElem.querySelectorAll(".attrlist input[data-attrname]"));
+            attrElems.forEach(function(attrElem){
+                var key = attrElem.dataset.attrname;
+                var val = attrElem.value;
+                
+                attrs.push(key + "='" + val + "'");
+            });
             
-            value += "<" + tagName + " class='" + classes + "'" + src + ">" + html + "</" + tagName + ">";
+            if (listElem.querySelectorAll(".modulename")[0].textContent) {
+                classes = listElem.querySelectorAll(".modulename")[0].textContent;
+            }
+            
+            value += "<" + tagName + " class='" + classes + "' " + attrs.join(" ") + ">" + html + "</" + tagName + ">";
         });
 
         xhrURL = "/py/update_file.py?data=" + encodeURIComponent(value) + "&fname=" + encodeURIComponent(fileName);
