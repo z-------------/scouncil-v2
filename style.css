@@ -48,7 +48,7 @@
 
 ::selection {
     color: inherit;
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(127, 127, 127, .3);
 }
 
 ::-webkit-scrollbar {
@@ -363,15 +363,19 @@ header nav span {
 }
 
 body, body.blue {
-    background-color: #18a7e4;
+    background-color: #18A7E4;
 }
 
 body.yellow {
-    background-color: #e4bb18;
+    background-color: #E4BB18;
 }
 
 body.red {
-    background-color: #e41841;
+    background-color: #E41841;
+}
+
+body.green {
+    background-color: #2ECC40;
 }
 
 header nav .burger {
@@ -396,6 +400,10 @@ input, textarea {
     padding: 10px;
     width: 500px;
     resize: none;
+}
+
+textarea {
+    min-height: 200px;
 }
 
 input:focus, textarea:focus {
@@ -436,7 +444,7 @@ button:hover {
 .social-links a {
     display: inline-block;
     background: red;
-    margin: 5px;
+    margin: 5px 10px;
     margin-left: 0;
     padding: 7px 10px;
     padding-left: 40px;

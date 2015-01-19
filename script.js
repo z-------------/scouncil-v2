@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function changeColors() {
-        var classes = ["blue", "yellow", "red"];
+        var classes = ["blue", "yellow", "red", "green"];
         var index = [].slice.call(document.querySelector("header nav").children).indexOf(document.querySelector("[href='" + location.hash + "']")) % classes.length;
         
         document.body.removeAttribute("class")
