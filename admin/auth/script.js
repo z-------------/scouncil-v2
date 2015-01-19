@@ -9,8 +9,8 @@ var hrTags = {
     h6: "Header 6",
     p: "Paragraph",
     img: "Image",
-    ul: "Bullet list",
-    ol: "Numbered list",
+    ul: "Unordered list",
+    ol: "Ordered list",
     div: "HTML block"
 };
 
