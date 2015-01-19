@@ -4,13 +4,13 @@ shh it's top secret
 
 ## Dependencies
 
-+ `apache2`
++ [`apache2`](http://httpd.apache.org/)
 
-+ `python3`
++ [`python3`](https://www.python.org/downloads/)
 
-+ `php5` and `libapache2-mod-php5`
++ [`php5`](http://php.net/downloads.php) and `libapache2-mod-php5`
 
-These can all be installed with `apt-get`.
+These can all be installed with `apt-get` or from the linked urls.
 
 ## Configure
 
