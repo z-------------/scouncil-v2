@@ -145,8 +145,12 @@ aside li.current {
     width: 50px;
     height: 100%;
     
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, .05);
     background-image: url(/img/ui/reorder.svg);
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.attr-container span:after {
+    content: ":";
 }
