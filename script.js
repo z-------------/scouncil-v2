@@ -12,6 +12,34 @@ var LinkshimAsyncLink = {
     swap: function(){}
 };
 
+var removeBRs = function(html){
+    var dom = document.createElement("body");
+    dom.innerHTML = html;
+    var brElems = [].slice.call(dom.querySelectorAll("br"));
+    
+    brElems.forEach(function(brElem, i){
+        if (i === 0) {
+            dom.removeChild(brElem);
+        }
+    });
+    
+    return dom.innerHTML;
+};
+
+var removeEmptyLinks = function(html){
+    var dom = document.createElement("body");
+    dom.innerHTML = html;
+    var aElems = [].slice.call(dom.querySelectorAll("a"));
+    
+    aElems.forEach(function(aElem, i, a){
+        if (aElem.textContent.length === 0) {
+            dom.removeChild(aElem);
+        }
+    });
+    
+    return dom.innerHTML;
+};
+
 document.addEventListener("DOMContentLoaded", function(){
     var memberULs = document.querySelectorAll(".module.member-list");
     
@@ -187,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function(){
             
             var date = new Date(entries[i].updated).toDateString();
             var content = entries[i].content.replace(/<img[^>]+\>/ig, "");
-            entryElem.innerHTML = "<div class='entry-container'><p>" + content.autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
+            entryElem.innerHTML = "<div class='entry-container'><p>" + removeBRs(removeEmptyLinks(content)).autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
             
             entryElem.addEventListener("click", function(){
                 streamElems[0].classList.toggle("dimmed");
