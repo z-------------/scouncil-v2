@@ -84,9 +84,9 @@ body {
     transition-property: background;
 }
 
-body.roll {
-    animation: barrelRoll 3s;
-    -webkit-animation: barrelRoll 3s;
+body.roll * {
+    animation: barrelRoll 5s linear infinite;
+    -webkit-animation: barrelRoll 5s linear infinite;
 }
 
 a {
