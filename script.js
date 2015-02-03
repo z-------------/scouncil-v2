@@ -210,12 +210,12 @@ document.addEventListener("DOMContentLoaded", function(){
         
         streamElems[0].innerHTML = "";
 
-        for (var i = 0; i < 10; i++) {
+        entries.forEach(function(entry){
             var entryElem = document.createElement("li");
             
-            var date = new Date(entries[i].updated).toDateString();
-            var content = entries[i].content.replace(/<img[^>]+\>/ig, "");
-            entryElem.innerHTML = "<div class='entry-container'><p>" + removeBRs(removeEmptyLinks(content)).autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entries[i].alternate + "'></div><div class='entryinfo'>" + date + "</div></a>";
+            var date = new Date(entry.pubDate).toDateString();
+            var content = entry.description.replace(/<img[^>]+\>/ig, "");
+            entryElem.innerHTML = "<div class='entry-container'><p>" + removeBRs(removeEmptyLinks(content)).autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entry.link + "'></div><div class='entryinfo'>" + date + "</div></a>";
             
             entryElem.addEventListener("click", function(){
                 streamElems[0].classList.toggle("dimmed");
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function(){
             
             var entryContainer = entryElem.querySelector(".entry-container");
             if (entryContainer.offsetHeight > entryElem.offsetHeight - 50) entryElem.classList.add("overflow");
-        }
+        });
         
         fbMsnry = new Masonry(streamElems[0], {
             itemSelector: "li",

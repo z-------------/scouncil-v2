@@ -8,9 +8,11 @@ shh it's top secret
 
 + [`python3`](https://www.python.org/downloads/)
 
-+ [`php5`](http://php.net/downloads.php) and `libapache2-mod-php5`
++ [`php5`](http://php.net/downloads.php)
 
-These can all be installed with `apt-get` or from the linked urls.
++ `libapache2-mod-php5`
+
++ [`xmltodict`](https://github.com/martinblech/xmltodict)
 
 ## Configure
 
