@@ -36,40 +36,40 @@
         "photo": "img/members/henry.jpg",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
-        "name": "Lorem Ipsum",
+        "name": "Tayyab Shahzada",
         "role": "Chairperson",
         "cabinet": "apprentice",
-        "photo": "//placehold.it/150x150",
+        "photo": "img/members/tayyab.jpg",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
-        "name": "Lorem Ipsum",
+        "name": "Vera Ho",
         "role": "Vice Chairperson",
         "cabinet": "apprentice",
-        "photo": "//placehold.it/150x150",
+        "photo": "img/members/vera.jpg",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
-        "name": "Lorem Ipsum",
+        "name": "Andy Yau",
         "role": "Vice Chairperson",
         "cabinet": "apprentice",
-        "photo": "//placehold.it/150x150",
+        "photo": "img/members/andy.jpg",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
-        "name": "Lorem Ipsum",
+        "name": "Angela Fu",
         "role": "Secretary",
         "cabinet": "apprentice",
-        "photo": "//placehold.it/150x150",
+        "photo": "img/members/angela.jpg",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
-        "name": "Lorem Ipsum",
+        "name": "Tsz Yat Liu",
         "role": "Treasurer",
         "cabinet": "apprentice",
-        "photo": "//placehold.it/150x150",
+        "photo": "img/members/tszyat.jpg",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }, {
-        "name": "Lorem Ipsum",
+        "name": "Samantha Lam",
         "role": "Chief of Communications",
         "cabinet": "apprentice",
-        "photo": "//placehold.it/150x150",
+        "photo": "img/members/samantha.jpg",
         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue."
     }]
 }
