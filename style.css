@@ -297,7 +297,7 @@ section img, .module.news-stream li.expanded, .module.news-stream li:hover {
     padding: 20px 31px;
     width: 100vw;
     width: calc(100vw - 350px);
-    height: 230px;
+    min-height: 230px;
     opacity: 0;
     pointer-events: none;
     background-color: rgba(0, 0, 0, .3);
@@ -349,7 +349,7 @@ section img, .module.news-stream li.expanded, .module.news-stream li:hover {
 }
 
 .module.member-list li.expanded {
-    max-height: 430px;
+    max-height: 700px;
 }
 
 .module.member-list li .detail p {
@@ -527,7 +527,7 @@ button:hover {
     padding: 13px 31px;
     font-weight: 300;
     font-size: .8em;
-    background-color: inherit;
+    background-color: #FFF;
 }
 
 .module.news-stream li .entry-container {

@@ -12,20 +12,6 @@ var LinkshimAsyncLink = {
     swap: function(){}
 };
 
-var removeBRs = function(html){
-    var dom = document.createElement("body");
-    dom.innerHTML = html;
-    var brElems = [].slice.call(dom.querySelectorAll("br"));
-    
-    brElems.forEach(function(brElem, i){
-        if (i === 0) {
-            dom.removeChild(brElem);
-        }
-    });
-    
-    return dom.innerHTML;
-};
-
 var removeEmptyLinks = function(html){
     var dom = document.createElement("body");
     dom.innerHTML = html;
@@ -215,14 +201,16 @@ document.addEventListener("DOMContentLoaded", function(){
             
             var date = new Date(entry.pubDate).toDateString();
             var content = entry.description.replace(/<img[^>]+\>/ig, "");
-            entryElem.innerHTML = "<div class='entry-container'><p>" + removeBRs(removeEmptyLinks(content)).autoLink({target: "_blank"}) + "</p><a target='_blank' href='" + entry.link + "'></div><div class='entryinfo'>" + date + "</div></a>";
+            entryElem.innerHTML = "<div class='entry-container'><p>" + removeEmptyLinks(content).autoLink({target: "_blank"}).replace(/(<br>)+$/ig, "") + "</p></div><a target='_blank' href='" + entry.link + "'><div class='entryinfo'>" + date + "</div></a>";
             
             entryElem.addEventListener("click", function(){
                 streamElems[0].classList.toggle("dimmed");
                 this.classList.toggle("expanded");
             });
             
-            streamElems[0].appendChild(entryElem);
+            if (entryElem.querySelector(".entry-container").textContent.length > 0) {
+                streamElems[0].appendChild(entryElem);
+            }
             
             var entryContainer = entryElem.querySelector(".entry-container");
             if (entryContainer.offsetHeight > entryElem.offsetHeight - 50) entryElem.classList.add("overflow");

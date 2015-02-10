@@ -11,6 +11,6 @@ response_text = response.read().decode("utf-8")
 
 data = xmltodict.parse(response_text)
 items = data["rss"]["channel"]["item"]
-json = json.dumps(items)
+json = json.dumps(items, indent=4)
 
 print('{"entries":' + json + '}')
