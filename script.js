@@ -248,4 +248,6 @@ document.addEventListener("DOMContentLoaded", function(){
             targetElem.innerHTML = html;
         });
     });
+    
+    document.querySelectorAll(".member-list li .snippet")[0].click();
 });
