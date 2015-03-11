@@ -36,6 +36,7 @@ var moduleList = document.querySelector("#module-list");
 var editorElem = document.querySelector("#editor");
 var saveButton = document.querySelector("#save");
 var clearButton = document.querySelector("#clear");
+var newFileBtn = document.querySelector("#new-file");
 
 var really = function(str, callback) {
     var confirmVal = confirm(str);
@@ -199,6 +200,18 @@ clearButton.addEventListener("click", function(){
     var really = confirm("Are you sure you want to delete everything from '" + editorElem.dataset.fileName + "'?");
     if (really) {
         clearEditor();
+    }
+});
+
+newFileBtn.addEventListener("click", function(){
+    var filename = prompt("File name (anything you want)", "newpage.html");
+    if (filename) {
+        xhrURL = "/py/new_file.py?fname=" + encodeURIComponent(filename);
+        xhr(xhrURL, function(response){
+            alert(response);
+        });
+    } else {
+        alert("You need to specify a file name");
     }
 });
 
